@@ -1,0 +1,14 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+*.log
+.DS_Store
+/uploads_tmp/
+# Runtime portátil do Node (instalado localmente, não versionar)
+/.runtime/
+/.tools/
+# Config local do agente e cache de build TS
+/.claude/
+*.tsbuildinfo
