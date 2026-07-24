@@ -47,6 +47,16 @@ Em **Project Settings → API**, copie:
 Edite `.env.local` na raiz, salve e reinicie o servidor (`iniciar.bat`).
 Confira o status em **http://localhost:3000/settings** — quando os 3 itens ficarem ✅, está pronto.
 
+## 7. Criar o primeiro usuário (login)
+
+Com o Supabase configurado, o app passa a **exigir login** (middleware). Para criar o acesso do médico:
+
+- **Opção A (recomendada):** no painel Supabase → **Authentication → Users → Add user** → informe e-mail e senha (marque "Auto Confirm"). Depois entre em `http://localhost:3000/login`.
+- **Opção B:** na tela `/login`, clique em **Criar conta**. Se o projeto exigir confirmação por e-mail (**Authentication → Providers → Email → Confirm email**), confirme antes de entrar — ou desligue a confirmação para uso interno.
+
+> No login, o app cria automaticamente o perfil em `public.users` (role padrão `medico`).
+> Para tornar alguém admin: `update public.users set role = 'admin' where email = 'voce@exemplo.com';`
+
 ## Verificação rápida (SQL)
 
 ```sql

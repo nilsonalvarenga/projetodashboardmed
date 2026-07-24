@@ -1,7 +1,8 @@
 'use client';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { supabaseBrowser } from '@/lib/supabaseBrowserClient';
 
 type Item = { href: string; label: string; icon: string };
 type Group = { title: string; items: Item[] };
@@ -43,7 +44,29 @@ const GROUPS: Group[] = [
 
 export default function Sidebar() {
   const p = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+
+  useEffect(() => {
+    supabaseBrowser.auth.getUser().then(({ data }) => setUserEmail(data.user?.email ?? null)).catch(() => {});
+  }, []);
+
+  async function logout() {
+    try { await supabaseBrowser.auth.signOut(); } catch {}
+    router.push('/login');
+    router.refresh();
+  }
+
+  const UserFooter = userEmail ? (
+    <div className="mb-3">
+      <div className="px-2 text-[11px] text-slate-400 truncate mb-1.5" title={userEmail}>👤 {userEmail}</div>
+      <button onClick={logout}
+        className="w-full flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-300 hover:bg-white/10 hover:text-white transition text-left">
+        <span className="w-4 text-center">↩</span> Sair
+      </button>
+    </div>
+  ) : null;
 
   const Nav = (
     <nav className="space-y-5">
@@ -96,15 +119,18 @@ export default function Sidebar() {
       <aside className="hidden md:flex flex-col w-64 shrink-0 bg-navy-900 min-h-screen p-4">
         {Brand}
         {Nav}
-        <p className="mt-auto pt-8 px-2 text-[11px] text-slate-400 leading-relaxed">
-          Apoio à decisão. A decisão final é sempre do médico.
-        </p>
+        <div className="mt-auto pt-6">
+          {UserFooter}
+          <p className="px-2 text-[11px] text-slate-400 leading-relaxed">
+            Apoio à decisão. A decisão final é sempre do médico.
+          </p>
+        </div>
       </aside>
 
       {/* Drawer mobile */}
       {open && (
         <div className="md:hidden fixed inset-0 z-40 flex">
-          <aside className="w-64 bg-navy-900 p-4 overflow-y-auto">{Brand}{Nav}</aside>
+          <aside className="w-64 bg-navy-900 p-4 overflow-y-auto flex flex-col">{Brand}{Nav}<div className="mt-6">{UserFooter}</div></aside>
           <div className="flex-1 bg-black/40" onClick={() => setOpen(false)} />
         </div>
       )}
