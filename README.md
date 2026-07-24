@@ -134,8 +134,20 @@ O build de produção (`next build`) roda sem problemas no Linux da Vercel.
 - **Login (Supabase Auth)** ativo: quando o Supabase está configurado, `middleware.ts` exige sessão em todas as páginas e APIs (páginas → `/login`; APIs → 401). Em modo demonstração (sem chaves) o app fica aberto para você navegar.
 - Uso **interno**. `service_role` só no servidor (API routes) — nunca no navegador.
 - RLS habilitado no banco. Acervo protegido: só **trechos curtos + paráfrase**, sempre com fonte. Não expor publicamente.
-- Auditoria em `audit_logs` e `rag_retrieval_logs`.
-- **Próxima melhoria:** checagem de **papéis** (admin/médico/revisor) por rota — hoje qualquer usuário autenticado tem acesso.
+- Auditoria em `audit_logs` e `rag_retrieval_logs` (com `user_id` de quem fez a ação).
+
+### Papéis e permissões
+
+Cada usuário tem um papel em `public.users.role`. As rotas sensíveis checam a capacidade (403 se faltar), e a Sidebar esconde o que o papel não pode usar:
+
+| Papel | Ler acervo | Chat / Casos | Enviar / Extrair | Revisar / Aprovar |
+|---|:-:|:-:|:-:|:-:|
+| **admin** | ✅ | ✅ | ✅ | ✅ |
+| **medico** | ✅ | ✅ | ✅ | ✅ |
+| **revisor** | ✅ | — | — | ✅ |
+| **leitor** | ✅ | — | — | — |
+
+Trocar papel: `update public.users set role = 'revisor' where email = 'fulano@exemplo.com';`
 
 ## Status dos ciclos
 
@@ -143,4 +155,5 @@ O build de produção (`next build`) roda sem problemas no Linux da Vercel.
 - [x] **4** extração estruturada IA · [x] **5** dashboard + listagens · [x] **6** chat RAG (12 seções + citações)
 - [x] **7** revisão médica · [x] **8** fluxo de teste documentado · [x] **9** documentação + launchers + modo demo
 - [x] **Login (Supabase Auth)** — middleware protege páginas e APIs quando configurado
-- [ ] **Próximo** controle de **papéis** por rota (admin/médico/revisor)
+- [x] **Papéis** (admin/médico/revisor/leitor) — permissões por rota + Sidebar adaptada + auditoria com autor
+- [ ] **Próximo** (opcional) tela de gestão de usuários/papéis na UI

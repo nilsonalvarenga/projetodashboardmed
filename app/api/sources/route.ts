@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseServer';
 import { hasSupabase } from '@/lib/env';
+import { requireCapability } from '@/lib/auth';
 
 export const runtime = 'nodejs';
 
@@ -17,12 +18,14 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   if (!hasSupabase()) return NextResponse.json({ error: 'Supabase não configurado.' }, { status: 503 });
+  const auth = await requireCapability('ingest');
+  if (auth instanceof NextResponse) return auth;
   try {
     const { nome, autor, descricao } = await req.json();
     if (!nome) return NextResponse.json({ error: 'nome obrigatório' }, { status: 400 });
     const { data, error } = await supabaseAdmin()
       .from('document_sources')
-      .insert({ nome, autor, descricao })
+      .insert({ nome, autor, descricao, created_by: auth.user.id })
       .select('id')
       .single();
     if (error) throw new Error(error.message);

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseServer';
 import { hasSupabase } from '@/lib/env';
+import { requireCapability } from '@/lib/auth';
 
 export const runtime = 'nodejs';
 
@@ -32,6 +33,8 @@ export async function GET() {
 // Aprovar/rejeitar/corrigir (com edição opcional via "patch"). Protocolo aprovado vira oficial.
 export async function POST(req: NextRequest) {
   if (!hasSupabase()) return NextResponse.json({ error: 'Supabase não configurado.' }, { status: 503 });
+  const auth = await requireCapability('review');
+  if (auth instanceof NextResponse) return auth;
   try {
     const { entity_type, id, status, patch } = await req.json();
     const table = TABLES[entity_type];
@@ -42,12 +45,13 @@ export async function POST(req: NextRequest) {
     const upd: any = { status, ...(patch || {}) };
     if (['aprovado', 'rejeitado', 'revisado'].includes(status) && table !== 'document_chunks') {
       upd.revisado_em = new Date().toISOString();
+      upd.revisado_por = auth.user.id;
     }
     if (entity_type === 'protocol' && status === 'aprovado') upd.oficial = true;
 
     const { error } = await supabaseAdmin().from(table).update(upd).eq('id', id);
     if (error) throw new Error(error.message);
-    await supabaseAdmin().from('audit_logs').insert({ action: 'review:' + status, entity: entity_type, entity_id: id });
+    await supabaseAdmin().from('audit_logs').insert({ action: 'review:' + status, entity: entity_type, entity_id: id, user_id: auth.user.id });
     return NextResponse.json({ ok: true });
   } catch (e: any) {
     return NextResponse.json({ error: String(e.message || e) }, { status: 500 });

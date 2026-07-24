@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseServer';
 import { ingestDocument } from '@/lib/ingest';
 import { hasSupabase, hasEmbeddings } from '@/lib/env';
+import { requireCapability } from '@/lib/auth';
 
 export const runtime = 'nodejs';
 export const maxDuration = 300;
@@ -14,6 +15,8 @@ export async function POST(req: NextRequest) {
       { status: 503 },
     );
   }
+  const auth = await requireCapability('ingest');
+  if (auth instanceof NextResponse) return auth;
   try {
     const form = await req.formData();
     const file = form.get('file') as File | null;
@@ -33,6 +36,7 @@ export async function POST(req: NextRequest) {
       mime: file.type,
       tamanho_bytes: file.size,
       status: 'recebido',
+      created_by: auth.user.id,
     };
 
     const db = supabaseAdmin();
@@ -41,7 +45,7 @@ export async function POST(req: NextRequest) {
 
     const buf = Buffer.from(await file.arrayBuffer());
     const res = await ingestDocument(doc.id, buf, meta.tipo, file.name);
-    await db.from('audit_logs').insert({ action: 'ingest', entity: 'document', entity_id: doc.id, meta: res });
+    await db.from('audit_logs').insert({ action: 'ingest', entity: 'document', entity_id: doc.id, user_id: auth.user.id, meta: res });
     return NextResponse.json({ ok: true, document_id: doc.id, ...res });
   } catch (e: any) {
     return NextResponse.json({ error: String(e.message || e) }, { status: 500 });

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { extractStructured } from '@/lib/extractStructured';
 import { hasSupabase, hasLLM } from '@/lib/env';
+import { requireCapability } from '@/lib/auth';
 
 export const runtime = 'nodejs';
 export const maxDuration = 300;
@@ -13,6 +14,8 @@ export async function POST(req: NextRequest) {
       { status: 503 },
     );
   }
+  const auth = await requireCapability('ingest');
+  if (auth instanceof NextResponse) return auth;
   try {
     const { document_id } = await req.json();
     if (!document_id) return NextResponse.json({ error: 'document_id ausente' }, { status: 400 });

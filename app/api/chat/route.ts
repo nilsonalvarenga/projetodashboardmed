@@ -4,6 +4,7 @@ import { retrieve, caseToQuery } from '@/lib/rag';
 import { generate, parseJsonLoose } from '@/lib/ai';
 import { CLINICAL_SYSTEM_PROMPT, buildClinicalUserPrompt } from '@/lib/prompts';
 import { hasSupabase, hasEmbeddings, hasLLM } from '@/lib/env';
+import { requireCapability } from '@/lib/auth';
 
 export const runtime = 'nodejs';
 export const maxDuration = 120;
@@ -17,6 +18,8 @@ export async function POST(req: NextRequest) {
       { status: 503 },
     );
   }
+  const auth = await requireCapability('chat');
+  if (auth instanceof NextResponse) return auth;
   try {
     const body = await req.json();
     const caso = body.caso || {};
@@ -26,7 +29,7 @@ export async function POST(req: NextRequest) {
     if (!caseId) {
       const { data, error } = await db
         .from('clinical_cases')
-        .insert({ ...caso, titulo: (caso.queixa_principal || 'Caso clínico').slice(0, 80) })
+        .insert({ ...caso, titulo: (caso.queixa_principal || 'Caso clínico').slice(0, 80), created_by: auth.user.id })
         .select('id')
         .single();
       if (error) throw new Error(error.message);
@@ -62,7 +65,7 @@ export async function POST(req: NextRequest) {
         model_embed: process.env.EMBEDDING_MODEL, match_count: chunks.length, latency_ms: Date.now() - t0,
       });
     }
-    await db.from('audit_logs').insert({ action: 'chat', entity: 'case', entity_id: caseId, meta: { model: out.model, chunks: chunks.length } });
+    await db.from('audit_logs').insert({ action: 'chat', entity: 'case', entity_id: caseId, user_id: auth.user.id, meta: { model: out.model, chunks: chunks.length } });
 
     return NextResponse.json({ case_id: caseId, structured, sources: chunks, raw: structured ? undefined : out.text });
   } catch (e: any) {

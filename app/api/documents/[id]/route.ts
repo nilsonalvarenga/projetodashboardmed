@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabaseAdmin } from '@/lib/supabaseServer';
 import { hasSupabase } from '@/lib/env';
+import { requireCapability } from '@/lib/auth';
 
 export const runtime = 'nodejs';
 
@@ -40,10 +41,12 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
 // Excluir documento (cascade remove chunks/extrações).
 export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
   if (!hasSupabase()) return NextResponse.json({ error: 'Supabase não configurado.' }, { status: 503 });
+  const auth = await requireCapability('ingest');
+  if (auth instanceof NextResponse) return auth;
   try {
     const { error } = await supabaseAdmin().from('documents').delete().eq('id', params.id);
     if (error) throw new Error(error.message);
-    await supabaseAdmin().from('audit_logs').insert({ action: 'document:delete', entity: 'document', entity_id: params.id });
+    await supabaseAdmin().from('audit_logs').insert({ action: 'document:delete', entity: 'document', entity_id: params.id, user_id: auth.user.id });
     return NextResponse.json({ ok: true });
   } catch (e: any) {
     return NextResponse.json({ error: String(e.message || e) }, { status: 500 });
