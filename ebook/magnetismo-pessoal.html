@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Como Se Tornar um Ímã para o que Você Deseja</title>
+<style>
+/* ============================ FONTES ============================ */
+@font-face{font-family:'Playfair Display';font-weight:700;font-style:normal;font-display:swap;src:url('assets/fonts/PlayfairDisplay-Bold.ttf') format('truetype');}
+@font-face{font-family:'Playfair Display';font-weight:900;font-style:normal;font-display:swap;src:url('assets/fonts/PlayfairDisplay-Black.ttf') format('truetype');}
+@font-face{font-family:'Lora';font-weight:400;font-style:normal;font-display:swap;src:url('assets/fonts/Lora-Regular.ttf') format('truetype');}
+@font-face{font-family:'Lora';font-weight:500;font-style:normal;font-display:swap;src:url('assets/fonts/Lora-Medium.ttf') format('truetype');}
+@font-face{font-family:'Lora';font-weight:600;font-style:normal;font-display:swap;src:url('assets/fonts/Lora-SemiBold.ttf') format('truetype');}
+@font-face{font-family:'Lora';font-weight:700;font-style:normal;font-display:swap;src:url('assets/fonts/Lora-Bold.ttf') format('truetype');}
+@font-face{font-family:'Lora';font-weight:400;font-style:italic;font-display:swap;src:url('assets/fonts/Lora-Italic.ttf') format('truetype');}
+@font-face{font-family:'Lora';font-weight:600;font-style:italic;font-display:swap;src:url('assets/fonts/Lora-SemiBoldItalic.ttf') format('truetype');}
+@font-face{font-family:'Montserrat';font-weight:500;font-style:normal;font-display:swap;src:url('assets/fonts/Montserrat-Medium.ttf') format('truetype');}
+@font-face{font-family:'Montserrat';font-weight:600;font-style:normal;font-display:swap;src:url('assets/fonts/Montserrat-SemiBold.ttf') format('truetype');}
+@font-face{font-family:'Montserrat';font-weight:700;font-style:normal;font-display:swap;src:url('assets/fonts/Montserrat-Bold.ttf') format('truetype');}
+
+/* ============================ VARIÁVEIS ============================ */
+:root{
+  --ink:#2b2138;          /* texto principal */
+  --ink-soft:#4a3f59;
+  --muted:#7a6f8c;        /* texto secundário */
+  --violet:#6d28d9;
+  --violet-deep:#2e1a47;
+  --violet-deeper:#1c1030;
+  --violet-tint:#f4eefb;  /* fundo de caixas */
+  --violet-tint-2:#efe7f8;
+  --gold:#b8912f;
+  --gold-bright:#c9a227;
+  --gold-soft:#d9c07a;
+  --paper:#fbf8f3;
+  --paper-2:#f7f2ea;
+  --rule:#e6dccf;
+  --serif:'Lora',Georgia,serif;
+  --display:'Playfair Display','Lora',serif;
+  --sans:'Montserrat','Helvetica Neue',Arial,sans-serif;
+}
+
+/* ============================ PÁGINA ============================ */
+@page{
+  size:152mm 229mm;
+  margin:20mm 18mm 17mm 18mm;
+  @bottom-center{
+    content:counter(page);
+    font-family:'Montserrat',sans-serif;
+    font-size:8.3pt;
+    font-weight:600;
+    letter-spacing:.28em;
+    color:#a99bbf;
+    margin-top:6mm;
+  }
+}
+@page cover{ margin:0; @bottom-center{content:none} @top-center{content:none} }
+@page nofolio{ @bottom-center{content:none} }        /* pré-textuais */
+@page plain{ @bottom-center{content:none} }
+
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:var(--paper);}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:var(--serif);
+  color:var(--ink);
+  font-size:10.9pt;
+  line-height:1.62;
+  font-weight:400;
+  hyphens:auto;
+  -webkit-hyphens:auto;
+  text-rendering:optimizeLegibility;
+}
+
+/* ============================ CAPA ============================ */
+.cover{
+  page:cover;
+  position:relative;
+  width:152mm;height:228.9mm;
+  overflow:hidden;
+  background:
+    radial-gradient(120% 80% at 50% 34%, #3a2160 0%, #2a1544 45%, #1b0f2e 100%);
+  color:#fff;
+  break-after:page;
+}
+.cover svg{position:absolute;inset:0;width:100%;height:100%;}
+.cover .frame{position:absolute;inset:9mm;border:1px solid rgba(201,162,39,.42);}
+.cover .frame:before{content:"";position:absolute;inset:2.1mm;border:1px solid rgba(201,162,39,.20);}
+.cover .content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:24mm 20mm 20mm;text-align:center;}
+.cover .kick{
+  font-family:var(--sans);font-weight:600;font-size:8.4pt;letter-spacing:.44em;
+  color:var(--gold-soft);text-transform:uppercase;
+}
+.cover .kick .sep{display:inline-block;width:16mm;height:1px;background:linear-gradient(90deg,transparent,var(--gold-soft),transparent);vertical-align:middle;margin:0 3mm;}
+.cover-mid{display:flex;flex-direction:column;align-items:center;}
+.cover h1{
+  font-family:var(--display);font-weight:900;
+  font-size:37pt;line-height:1.02;letter-spacing:.005em;
+  margin:0;color:#fdfcff;
+  text-shadow:0 2px 30px rgba(0,0,0,.35);
+}
+.cover h1 .lg{display:block;font-size:52pt;letter-spacing:.02em;
+  background:linear-gradient(180deg,#f4e6bd 0%,#d9b64f 55%,#b8912f 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  margin:2mm 0 1mm;}
+.cover .sub{
+  font-family:var(--serif);font-style:italic;font-weight:400;font-size:15.5pt;
+  line-height:1.5;color:#efe7f8;max-width:110mm;margin:6mm auto 0;text-align:center;letter-spacing:.01em;
+}
+.cover .orn{margin:6mm 0;color:var(--gold-soft);font-size:13pt;letter-spacing:.5em;}
+.cover .credit{
+  font-family:var(--sans);font-weight:500;font-size:9pt;letter-spacing:.16em;
+  color:#cbbfe0;text-transform:uppercase;line-height:1.9;
+}
+.cover .credit b{color:var(--gold-soft);font-weight:700;}
+
+/* ============================ PRÉ-TEXTUAIS ============================ */
+.frontmatter{page:nofolio;}
+.plainpage{page:plain;}
+
+.titlepage{break-before:page;text-align:center;padding-top:34mm;height:100%;}
+.titlepage .k{font-family:var(--sans);font-weight:600;font-size:8.5pt;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;}
+.titlepage h1{font-family:var(--display);font-weight:900;font-size:30pt;line-height:1.06;color:var(--violet-deep);margin:8mm 6mm 0;}
+.titlepage h1 em{font-style:normal;color:var(--gold);display:block;font-size:34pt;}
+.titlepage .sub{font-family:var(--serif);font-style:italic;font-size:12pt;color:var(--muted);max-width:100mm;margin:8mm auto 0;line-height:1.55;}
+.titlepage .rule{width:24mm;height:2px;background:var(--gold);margin:12mm auto;}
+.titlepage .by{font-family:var(--sans);font-weight:500;font-size:9.5pt;letter-spacing:.14em;color:var(--ink-soft);text-transform:uppercase;line-height:2;}
+.titlepage .by b{color:var(--violet);}
+
+.colophon{break-before:page;font-family:var(--sans);font-size:8.6pt;line-height:1.72;color:var(--muted);padding-top:30mm;}
+.colophon p{margin:0 0 3.4mm;font-weight:500;}
+.colophon .big{font-family:var(--serif);font-size:10pt;color:var(--ink-soft);font-style:italic;line-height:1.6;}
+.colophon b{color:var(--ink);font-weight:600;}
+.colophon a{color:var(--violet);text-decoration:none;}
+.colophon .tag{display:inline-block;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-size:7.6pt;margin-bottom:1mm;}
+
+.epipage{break-before:page;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:190mm;text-align:center;padding:0 12mm;}
+.epipage .q{font-family:var(--display);font-weight:700;font-size:17pt;line-height:1.5;color:var(--violet-deep);font-style:italic;max-width:124mm;}
+.epipage .q .hl{color:var(--gold);}
+.epipage .mark{font-family:var(--display);font-size:44pt;color:var(--gold-soft);line-height:.2;height:10mm;}
+.epipage .attr{font-family:var(--sans);font-weight:600;font-size:8.6pt;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:12mm;}
+
+/* ============================ SUMÁRIO ============================ */
+.toc{break-before:page;padding-top:3mm;}
+.toc h2{font-family:var(--display);font-weight:900;font-size:24pt;color:var(--violet-deep);margin:0 0 1mm;}
+.toc .lead{font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:6mm;}
+.toc ul{list-style:none;margin:0;padding:0;}
+.toc .part{font-family:var(--sans);font-weight:700;font-size:8pt;letter-spacing:.26em;text-transform:uppercase;color:var(--violet);margin:5mm 0 2.5mm;display:flex;align-items:center;gap:3mm;}
+.toc .part:before{content:"";width:6mm;height:1.4px;background:var(--gold);display:inline-block;}
+.toc li.entry{display:flex;align-items:baseline;margin:0 0 2.6mm;break-inside:avoid;}
+.toc .num{font-family:var(--display);font-weight:700;font-size:11pt;color:var(--gold);width:9mm;flex:none;}
+.toc .ttl{font-family:var(--serif);font-weight:600;font-size:11.2pt;color:var(--ink);}
+.toc .ttl small{display:block;font-family:var(--sans);font-weight:500;font-size:7.6pt;letter-spacing:.04em;color:var(--muted);text-transform:none;margin-top:.4mm;}
+.toc .dots{flex:1;border-bottom:1.2px dotted #c9bcd8;margin:0 2.5mm 1.2mm;}
+.toc .pg{font-family:var(--sans);font-weight:600;font-size:9.5pt;color:var(--violet);min-width:6mm;text-align:right;}
+
+/* ============================ CAPÍTULOS ============================ */
+.chapter{break-before:page;}
+.chap-head{margin-bottom:9mm;}
+.chap-num{
+  font-family:var(--display);font-weight:900;font-size:60pt;line-height:.9;
+  color:transparent;-webkit-text-stroke:1px var(--gold-soft);
+  letter-spacing:.02em;margin-bottom:1mm;
+}
+.kicker{font-family:var(--sans);font-weight:700;font-size:8pt;letter-spacing:.28em;text-transform:uppercase;color:var(--violet);margin-bottom:3.5mm;}
+.chap-title{font-family:var(--display);font-weight:900;font-size:27pt;line-height:1.08;color:var(--violet-deep);margin:0 0 5mm;letter-spacing:.003em;}
+.epigraph{font-family:var(--serif);font-style:italic;font-size:11pt;line-height:1.5;color:var(--ink-soft);border-left:2.5px solid var(--gold);padding:1mm 0 1mm 5mm;margin:0 0 5mm;max-width:110mm;}
+.epigraph cite{display:block;font-style:normal;font-family:var(--sans);font-weight:600;font-size:7.8pt;letter-spacing:.06em;color:var(--muted);margin-top:2mm;text-transform:uppercase;}
+.timestamp{display:inline-block;font-family:var(--sans);font-weight:600;font-size:7.6pt;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;text-decoration:none;border:1px solid var(--gold-soft);border-radius:40px;padding:1.6mm 4mm;}
+.timestamp:before{content:"\25B8";margin-right:2mm;}
+.chap-rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:6mm 0;}
+
+p{margin:0 0 3.6mm;text-align:justify;orphans:2;widows:2;}
+.chapter p.first{text-align:left;}
+.dropcap{
+  float:left;font-family:var(--display);font-weight:900;
+  font-size:33pt;line-height:.82;color:var(--violet);
+  padding:1.5mm 2.4mm 0 0;margin-top:1mm;
+}
+h3.sub{font-family:var(--sans);font-weight:700;font-size:11pt;letter-spacing:.02em;color:var(--violet-deep);margin:7mm 0 2.5mm;break-after:avoid;}
+h3.sub .n{color:var(--gold);margin-right:2mm;font-family:var(--display);}
+em{font-style:italic;}
+strong{font-weight:600;color:var(--ink);}
+.lead-in{font-variant:small-caps;letter-spacing:.03em;font-weight:600;color:var(--violet-deep);}
+
+/* ---- Citação de destaque ---- */
+.pull{break-inside:avoid;text-align:center;margin:8mm 4mm;padding:0 2mm;position:relative;}
+.pull .mk{font-family:var(--display);font-size:34pt;color:var(--gold-soft);line-height:.1;height:6mm;display:block;}
+.pull p{font-family:var(--display);font-weight:700;font-style:italic;font-size:16.5pt;line-height:1.34;color:var(--violet-deep);text-align:center;margin:2mm 0 0;}
+.pull .who{font-family:var(--sans);font-weight:600;font-size:7.8pt;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:3.5mm;display:block;}
+
+/* ---- Caixa Ideia-chave ---- */
+.callout{break-inside:avoid;background:var(--violet-tint);border:1px solid #e3d5f5;border-left:4px solid var(--violet);border-radius:3px;padding:5mm 6mm;margin:6mm 0;}
+.callout .lbl{font-family:var(--sans);font-weight:700;font-size:7.6pt;letter-spacing:.24em;text-transform:uppercase;color:var(--violet);margin-bottom:2mm;display:flex;align-items:center;gap:2mm;}
+.callout .lbl:before{content:"\25C6";color:var(--gold);font-size:8pt;}
+.callout p{margin:0;text-align:left;font-size:11pt;line-height:1.55;color:var(--ink);}
+.callout p+p{margin-top:2.5mm;}
+.callout.gold{background:linear-gradient(180deg,#fbf4e2,#f7edd6);border-color:#ecdcae;border-left-color:var(--gold);}
+.callout.gold .lbl{color:var(--gold);}
+.callout.gold .lbl:before{color:var(--violet);}
+
+/* ---- Equação ---- */
+.equation{break-inside:avoid;text-align:center;margin:7mm 0;padding:6mm 4mm;background:var(--violet-deep);border-radius:5px;color:#fff;}
+.equation .e{font-family:var(--display);font-weight:700;font-size:15.5pt;line-height:1.4;color:#fff;}
+.equation .e b{color:var(--gold-soft);font-weight:700;}
+.equation .e .op{color:#a98fd8;padding:0 1mm;font-weight:400;}
+.equation .cap{font-family:var(--sans);font-weight:600;font-size:7.6pt;letter-spacing:.22em;text-transform:uppercase;color:#b6a2dd;margin-top:3mm;}
+
+/* ---- Prática ---- */
+.practice{break-inside:avoid;background:var(--paper-2);border:1.4px solid var(--gold-soft);border-radius:5px;padding:6mm 6.5mm;margin:7mm 0;}
+.practice .hd{font-family:var(--sans);font-weight:700;font-size:8pt;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:1mm;display:flex;align-items:center;gap:2.4mm;}
+.practice .hd:before{content:"\270E";font-size:11pt;color:var(--violet);}
+.practice h4{font-family:var(--display);font-weight:700;font-size:14pt;color:var(--violet-deep);margin:0 0 3.5mm;}
+.practice ol{margin:0;padding-left:0;counter-reset:step;list-style:none;}
+.practice ol li{position:relative;padding-left:9mm;margin-bottom:3mm;text-align:left;line-height:1.5;font-size:10.4pt;}
+.practice ol li:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:-.3mm;width:6mm;height:6mm;background:var(--violet);color:#fff;font-family:var(--sans);font-weight:700;font-size:8.5pt;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.practice .tip{font-family:var(--serif);font-style:italic;font-size:9.6pt;color:var(--muted);margin:3mm 0 0;text-align:left;}
+
+/* ---- Pontos-chave ---- */
+.keys{break-inside:avoid;border-top:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);padding:5mm 0;margin:8mm 0 0;}
+.keys .hd{font-family:var(--sans);font-weight:700;font-size:8pt;letter-spacing:.24em;text-transform:uppercase;color:var(--violet);margin-bottom:3mm;}
+.keys ul{list-style:none;margin:0;padding:0;}
+.keys li{position:relative;padding-left:7mm;margin-bottom:2.6mm;text-align:left;font-size:10.2pt;line-height:1.5;}
+.keys li:before{content:"\2726";position:absolute;left:0;top:0;color:var(--gold);font-size:9pt;}
+
+/* ---- Divisor ---- */
+.divider{text-align:center;color:var(--gold-soft);font-size:11pt;letter-spacing:1em;margin:6mm 0;}
+.divider:before{content:"\2726  \2022  \2726";}
+
+/* ---- Kit de ferramentas ---- */
+.kit .row{break-inside:avoid;display:flex;gap:5mm;margin-bottom:5mm;align-items:flex-start;}
+.kit .ic{flex:none;width:11mm;height:11mm;border-radius:50%;background:var(--violet-tint);border:1.5px solid var(--violet);color:var(--violet);font-family:var(--display);font-weight:900;font-size:12pt;display:flex;align-items:center;justify-content:center;}
+.kit .tx h4{font-family:var(--sans);font-weight:700;font-size:9.4pt;letter-spacing:.04em;color:var(--violet-deep);margin:.5mm 0 1mm;text-transform:uppercase;}
+.kit .tx p{margin:0;font-size:10pt;line-height:1.5;text-align:left;color:var(--ink-soft);}
+.kit .tx p b{color:var(--gold);}
+
+.closing{break-before:page;text-align:center;padding-top:40mm;}
+.closing .orn{color:var(--gold-soft);letter-spacing:.6em;font-size:12pt;}
+.closing p{font-family:var(--display);font-style:italic;font-weight:700;font-size:15pt;line-height:1.4;color:var(--violet-deep);text-align:center;margin:8mm auto;max-width:105mm;}
+.closing .sig{font-family:var(--sans);font-weight:600;font-size:8pt;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);}
+</style>
+</head>
+<body>
+
+<!-- ============================ CAPA ============================ -->
+<section class="cover">
+  <svg viewBox="0 0 600 904" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <radialGradient id="glow" cx="50%" cy="45%" r="55%">
+        <stop offset="0%" stop-color="#6a3fb0" stop-opacity="0.55"/>
+        <stop offset="55%" stop-color="#3a2160" stop-opacity="0.15"/>
+        <stop offset="100%" stop-color="#1b0f2e" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="goldline" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e6c766"/>
+        <stop offset="100%" stop-color="#a97f28"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="600" height="904" fill="url(#glow)"/>
+    <g transform="translate(0,-96)">
+    <g fill="none" stroke="url(#goldline)" stroke-width="1.1" opacity="0.34" stroke-linecap="round">
+    <path d="M 300.0 300.0 C 328.5 294.5 346.0 439.1 346.0 452.0 C 346.0 464.9 328.5 609.5 300.0 604.0"/>
+    <path d="M 300.0 300.0 C 271.5 294.5 254.0 439.1 254.0 452.0 C 254.0 464.9 271.5 609.5 300.0 604.0"/>
+    <path d="M 300.0 300.0 C 364.5 287.5 404.0 422.9 404.0 452.0 C 404.0 481.1 364.5 616.5 300.0 604.0"/>
+    <path d="M 300.0 300.0 C 235.5 287.5 196.0 422.9 196.0 452.0 C 196.0 481.1 235.5 616.5 300.0 604.0"/>
+    <path d="M 300.0 300.0 C 406.6 279.4 472.0 403.8 472.0 452.0 C 472.0 500.2 406.6 624.6 300.0 604.0"/>
+    <path d="M 300.0 300.0 C 193.4 279.4 128.0 403.8 128.0 452.0 C 128.0 500.2 193.4 624.6 300.0 604.0"/>
+    <path d="M 300.0 300.0 C 455.0 270.0 550.0 382.0 550.0 452.0 C 550.0 522.0 455.0 634.0 300.0 604.0"/>
+    <path d="M 300.0 300.0 C 145.0 270.0 50.0 382.0 50.0 452.0 C 50.0 522.0 145.0 634.0 300.0 604.0"/>
+    <path d="M 300.0 300.0 C 509.6 259.4 638.0 357.4 638.0 452.0 C 638.0 546.6 509.6 644.6 300.0 604.0"/>
+    <path d="M 300.0 300.0 C 90.4 259.4 -38.0 357.4 -38.0 452.0 C -38.0 546.6 90.4 644.6 300.0 604.0"/>
+    <path d="M 300.0 300.0 C 570.3 247.7 736.0 329.9 736.0 452.0 C 736.0 574.1 570.3 656.3 300.0 604.0"/>
+    <path d="M 300.0 300.0 C 29.7 247.7 -136.0 329.9 -136.0 452.0 C -136.0 574.1 29.7 656.3 300.0 604.0"/>
+    </g>
+    <!-- polos -->
+    <circle cx="300" cy="300" r="5.5" fill="#e6c766"/>
+    <circle cx="300" cy="604" r="5.5" fill="#e6c766"/>
+    <circle cx="300" cy="300" r="12" fill="none" stroke="#e6c766" stroke-width="1" opacity="0.5"/>
+    <circle cx="300" cy="604" r="12" fill="none" stroke="#e6c766" stroke-width="1" opacity="0.5"/>
+    </g>
+  </svg>
+  <div class="frame"></div>
+  <div class="content">
+    <div class="kick"><span class="sep"></span>Guia de Transformação Pessoal<span class="sep"></span></div>
+    <div class="cover-mid">
+      <h1>Como Se Tornar<span class="lg">um Ímã</span></h1>
+      <div class="orn">&#10022; &nbsp; &#8226; &nbsp; &#10022;</div>
+      <p class="sub">para tudo o que voc&ecirc; deseja</p>
+    </div>
+    <div class="credit">Inspirado nos ensinamentos de<br><b>David Bayer</b><br>Podcast The School of Greatness &middot; Lewis Howes</div>
+  </div>
+</section>
+
+<!-- ============================ FALSA FOLHA DE ROSTO ============================ -->
+<section class="frontmatter">
+  <div class="titlepage">
+    <div class="k">Guia Prático de Transformação Pessoal</div>
+    <h1>Como Se Tornar<em>um Ímã</em></h1>
+    <p class="sub">para tudo o que você deseja</p>
+    <div class="rule"></div>
+    <p class="by">Uma síntese dos ensinamentos de<br><b>David Bayer</b><br><br>a partir da entrevista a <b>Lewis Howes</b><br>no podcast <em>The School of Greatness</em></p>
+  </div>
+
+  <!-- ============================ COLOFÃO / CRÉDITOS ============================ -->
+  <div class="colophon">
+    <p class="tag">Sobre esta obra</p>
+    <p class="big">Este e-book é uma síntese educativa e independente, escrita para estudo pessoal, das ideias compartilhadas por David Bayer na entrevista &ldquo;Como se tornar um ímã para o que você deseja&rdquo;, concedida a Lewis Howes no podcast <em>The School of Greatness</em> (canal Lewis Howes Português).</p>
+    <p>Os conceitos aqui reunidos &mdash; a Equação de Ouro, os estados primal e poderoso, a ferida central da infância, a arte da entrega e a ideia de que crenças são decisões &mdash; pertencem a David Bayer e aos seus mestres. Este material <b>não é oficial</b> nem possui vínculo, endosso ou revisão de David Bayer, Lewis Howes ou suas equipes.</p>
+    <p>O texto foi elaborado com palavras próprias, com fins de estudo, resumo e aplicação prática. Para a fonte completa, assista ao episódio original e conheça a obra do autor.</p>
+    <p>Vídeo original: <a href="https://www.youtube.com/watch?v=MgDSRCK-hrk">youtube.com/watch?v=MgDSRCK-hrk</a></p>
+    <p style="margin-top:6mm;">Edição de estudo &middot; 2026<br>Distribuição livre para uso pessoal e não comercial.<br>Tipografia: Playfair Display, Lora e Montserrat (SIL Open Font License).</p>
+    <p style="margin-top:6mm;font-style:italic;font-family:var(--serif);color:var(--muted);">Aviso: este conteúdo tem caráter educativo e não substitui acompanhamento médico, psicológico ou psiquiátrico. Se você enfrenta sofrimento intenso, dependência química ou pensamentos de autoagressão, procure um profissional de saúde. No Brasil, o CVV atende 24h pelo telefone 188.</p>
+  </div>
+</section>
+
+<!-- ============================ EPÍGRAFE ============================ -->
+<section class="frontmatter">
+  <div class="epipage">
+    <div class="mark">&ldquo;</div>
+    <div class="q">A realidade j&aacute; &eacute; generosa.<br>O que separa voc&ecirc;<br>daquilo que deseja<br>n&atilde;o &eacute; a falta de desejo &mdash;<br>&eacute; a presen&ccedil;a de <span class="hl">resist&ecirc;ncia</span>.</div>
+    <div class="attr">A ideia central deste livro</div>
+  </div>
+</section>
+
+<!-- ============================ SUMÁRIO ============================ -->
+<section class="frontmatter">
+  <div class="toc">
+    <div class="lead">O caminho</div>
+    <h2>Sum&aacute;rio</h2>
+    <ul>
+      <li class="entry"><span class="num"></span><span class="ttl">Introdu&ccedil;&atilde;o &mdash; A realidade &eacute; generosa<small>Por que o que voc&ecirc; deseja parece estar sempre a um passo</small></span><span class="dots"></span><span class="pg" data-pg="intro">00</span></li>
+
+      <li class="part">Parte I &middot; O mecanismo do magnetismo</li>
+      <li class="entry"><span class="num">1</span><span class="ttl">A Equa&ccedil;&atilde;o de Ouro<small>Desejo + N&atilde;o Resist&ecirc;ncia = Resultado Desejado</small></span><span class="dots"></span><span class="pg" data-pg="cap1">00</span></li>
+      <li class="entry"><span class="num">2</span><span class="ttl">Estados Primais e Estados Poderosos<small>Os dois modos do seu sistema nervoso</small></span><span class="dots"></span><span class="pg" data-pg="cap2">00</span></li>
+
+      <li class="part">Parte II &middot; As ra&iacute;zes da resist&ecirc;ncia</li>
+      <li class="entry"><span class="num">3</span><span class="ttl">A Ferida Central da Inf&acirc;ncia<small>Os programas invis&iacute;veis que governam o adulto</small></span><span class="dots"></span><span class="pg" data-pg="cap3">00</span></li>
+      <li class="entry"><span class="num">4</span><span class="ttl">V&iacute;cios, Sofrimento e a Arte da Entrega<small>Quando soltar o controle &eacute; a maior for&ccedil;a</small></span><span class="dots"></span><span class="pg" data-pg="cap4">00</span></li>
+
+      <li class="part">Parte III &middot; A reprograma&ccedil;&atilde;o</li>
+      <li class="entry"><span class="num">5</span><span class="ttl">Cren&ccedil;as S&atilde;o Decis&otilde;es<small>A Matriz de Decis&atilde;o e o poder de reescolher</small></span><span class="dots"></span><span class="pg" data-pg="cap5">00</span></li>
+      <li class="entry"><span class="num">6</span><span class="ttl">Torne-se o &Iacute;m&atilde;<small>Seu plano pr&aacute;tico de 30 dias</small></span><span class="dots"></span><span class="pg" data-pg="cap6">00</span></li>
+
+      <li class="part">Para levar com voc&ecirc;</li>
+      <li class="entry"><span class="num"></span><span class="ttl">Kit de Ferramentas R&aacute;pidas<small>Tudo em uma p&aacute;gina, para consultar sempre</small></span><span class="dots"></span><span class="pg" data-pg="kit">00</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ INTRODUÇÃO ============================ -->
+<section class="chapter">
+  <div class="chap-head">
+    <div class="kicker" style="color:var(--gold);">Introdução</div>
+    <h2 class="chap-title">A realidade é generosa</h2>
+    <p class="epigraph">Você não está aqui para <em>merecer</em> o que deseja. Você está aqui para <em>parar de resistir</em> ao que já é seu por natureza.</p>
+    <div class="chap-rule"></div>
+  </div>
+
+  <p class="first"><span class="dropcap">E</span>xiste um tipo específico de cansaço que não vem do corpo. É o cansaço de querer algo — mais dinheiro, um amor verdadeiro, saúde, paz — e sentir que aquilo permanece sempre a um passo de distância. Você trabalha, se esforça, lê, tenta. E, ainda assim, a sensação é a de nadar contra uma correnteza invisível. Se você conhece esse cansaço, este livro foi escrito para você.</p>
+
+  <p>A boa notícia é que talvez o problema nunca tenha sido a falta de esforço. Talvez tenha sido a <strong>direção</strong> do esforço. É exatamente isso que David Bayer propõe: e se aquilo que você deseja não estivesse distante porque a vida é avara, mas porque, sem perceber, você passa boa parte do tempo <em>empurrando o desejo para longe</em> com as próprias mãos?</p>
+
+  <p>Bayer é autor best-seller, empreendedor e professor de desenvolvimento pessoal. Sua história tem um detalhe importante: ele não fala de um pedestal de perfeição. Reconstruiu a própria vida depois de anos de vícios e sofrimento, e por isso o que ensina não é teoria de laboratório — é um mapa desenhado por quem esteve perdido e encontrou a saída. Na entrevista que inspira estas páginas, concedida a Lewis Howes no podcast <em>The School of Greatness</em>, ele resume décadas de estudo e experiência em ideias surpreendentemente simples de entender e profundamente transformadoras de praticar.</p>
+
+  <h3 class="sub"><span class="n">&#8226;</span>A premissa deste livro</h3>
+  <p>A tese central é a seguinte: <strong>você está, o tempo todo, magnetizando alguma coisa.</strong> A questão nunca é <em>se</em> você atrai — é a partir de qual estado interno você atrai. Quando opera desde a falta, o medo e a pressa, você emite falta, medo e pressa, e o mundo responde à altura. Quando opera desde a segurança, a confiança e a paz, torna-se um ímã para experiências dessa mesma natureza. Não porque o universo seja mágico, mas porque o seu estado interno determina o que você percebe, as decisões que toma, a energia que transmite e as portas que consegue enxergar.</p>
+
+  <div class="callout">
+    <div class="lbl">A ideia que muda tudo</div>
+    <p>Tornar-se um ímã não é adquirir algo que falta em você. É <strong>remover</strong> aquilo que bloqueia o que você já é. O magnetismo não se conquista com força — revela-se com alinhamento.</p>
+  </div>
+
+  <h3 class="sub"><span class="n">&#8226;</span>Como usar este livro</h3>
+  <p>Os seis capítulos seguem uma jornada em três partes. Na <strong>Parte I</strong>, você entende o mecanismo: a Equação de Ouro e os dois estados do seu sistema nervoso. Na <strong>Parte II</strong>, desce até as raízes da resistência — a ferida da infância e o papel do sofrimento e da entrega. Na <strong>Parte III</strong>, aprende a reprogramar: a descoberta libertadora de que crenças são decisões, e um plano prático de 30 dias para consolidar tudo.</p>
+  <p>Não leia como quem consome informação. Leia como quem faz um trabalho interno. Ao final de cada capítulo há uma <strong>Prática</strong> e uma lista de <strong>Pontos-chave</strong>. Tenha um caderno por perto — a transformação mora na caneta, não apenas nos olhos. E, sempre que quiser ir à fonte, os selos com o horário levam ao momento exato da entrevista original.</p>
+
+  <div class="pull">
+    <span class="mk">&ldquo;</span>
+    <p>O que você deseja não está esperando você ficar pronto. Está esperando você parar de resistir.</p>
+    <span class="who">O convite deste livro</span>
+  </div>
+</section>
+
+<!-- ============================ CAPÍTULO 1 ============================ -->
+<section class="chapter">
+  <div class="chap-head">
+    <div class="chap-num">01</div>
+    <div class="kicker">Parte I &middot; O mecanismo do magnetismo</div>
+    <h2 class="chap-title">A Equação de Ouro</h2>
+    <p class="epigraph">Desejo &#43; Não Resistência &#61; Resultado Desejado.<cite>A equação central de David Bayer</cite></p>
+    <a class="timestamp" href="https://www.youtube.com/watch?v=MgDSRCK-hrk&t=990">No episódio &middot; 16:30</a>
+    <div class="chap-rule"></div>
+  </div>
+
+  <p class="first"><span class="dropcap">I</span>magine que existe uma fórmula por trás de tudo o que você consegue — ou não consegue — realizar. David Bayer afirma que existe, e que ela é quase constrangedora de tão simples. Ele a chama de Equação de Ouro, e ela diz o seguinte:</p>
+
+  <div class="equation">
+    <div class="e"><b>Desejo</b> <span class="op">&#43;</span> <b>Não Resistência</b> <span class="op">&#61;</span> <b>Resultado Desejado</b></div>
+    <div class="cap">A física invisível da realização</div>
+  </div>
+
+  <p>Repare no que essa equação <em>não</em> diz. Ela não diz "Desejo × Esforço", nem "Desejo × Merecimento", nem "Desejo × Sorte". Ela diz que, dado um desejo, o único fator que decide se ele se materializa é a quantidade de <strong>resistência</strong> que você adiciona à conta. Reduza a resistência a zero, e o resultado flui com naturalidade. Mantenha a resistência alta, e nem todo o esforço do mundo será suficiente.</p>
+
+  <h3 class="sub"><span class="n">&#8226;</span>A realidade já é abundante</h3>
+  <p>O ponto de partida de Bayer é uma inversão radical de perspectiva. A maioria de nós foi ensinada a ver a realidade como escassa: não há dinheiro suficiente, amor suficiente, oportunidade suficiente. A partir dessa lente, desejar é sinônimo de lutar por um pedaço pequeno de um bolo que não dá para todos. Bayer propõe o contrário — a realidade é, por natureza, <strong>generosa</strong>. A vida tende à expansão. Seus desejos legítimos não são caprichos: são sinais daquilo que já é possível para você. Se você deseja algo profundamente, é porque, em algum nível, aquilo já pertence ao campo do que você pode viver.</p>
+  <p>Se é assim, por que tantos desejos não se realizam? Não porque a realidade os negue. Mas porque, entre o desejo e o resultado, nós inserimos uma barreira feita de nós mesmos.</p>
+
+  <h3 class="sub"><span class="n">&#8226;</span>O que é, afinal, a resistência?</h3>
+  <p>Resistência é tudo aquilo que, dentro de você, contradiz o próprio desejo. Ela costuma assumir quatro formas:</p>
+  <p><strong>1. Crenças limitantes.</strong> "Dinheiro é difícil." "Não sou o tipo de pessoa que consegue isso." "Amor sempre acaba em dor." São afirmações que operam como leis privadas da física — e que sabotam antes mesmo de você tentar.</p>
+  <p><strong>2. Medo.</strong> Medo de falhar, de ser julgado, de se decepcionar de novo. O medo estreita a visão e faz recuar justamente quando seria hora de avançar.</p>
+  <p><strong>3. Apego à falta.</strong> Este é sutil e poderoso. É a obsessão com a <em>ausência</em> daquilo que se quer — checar a conta bancária com aperto no peito, remoer a solidão, medir o tempo todo o tamanho do buraco. Quanto mais você foca na falta, mais transmite a frequência da falta.</p>
+  <p><strong>4. Esforço tenso, o "agarrar".</strong> A tentativa de forçar o resultado na marra, com urgência e controle. Paradoxalmente, quanto mais apertamos, mais afastamos.</p>
+
+  <div class="callout gold">
+    <div class="lbl">O paradoxo do ímã</div>
+    <p>Um ímã não faz força para atrair o ferro. Ele não se esforça, não implora, não persegue. Ele simplesmente <em>é</em> magnético — e o ferro vem. Tentar demais, a partir da falta, é como um ímã que se contorce para agarrar: perde exatamente o campo que o tornava atraente.</p>
+  </div>
+
+  <h3 class="sub"><span class="n">&#8226;</span>Você não precisa de mais desejo</h3>
+  <p>Aqui está a implicação prática mais importante da equação. Como o desejo, na maioria dos casos, já está alto — você <em>já</em> quer o relacionamento, a saúde, a prosperidade —, não adianta tentar querer mais. Empilhar desejo sobre desejo não resolve. O único ponto de alavancagem real é o <strong>outro lado da equação</strong>: diminuir a resistência.</p>
+  <p>Isso muda toda a estratégia. Em vez de perguntar "como eu me esforço mais para conseguir isso?", a pergunta passa a ser "onde, dentro de mim, eu ainda estou resistindo a isso?". A primeira pergunta gera tensão. A segunda gera liberdade. E é a segunda que dissolve o bloqueio.</p>
+
+  <div class="pull">
+    <span class="mk">&ldquo;</span>
+    <p>Você não precisa de mais desejo. Precisa de menos resistência.</p>
+    <span class="who">O princípio da Equação de Ouro</span>
+  </div>
+
+  <p>Nos próximos capítulos, veremos de onde vem essa resistência e como desmontá-la peça por peça — começando pelo lugar onde ela se manifesta em tempo real: o seu sistema nervoso.</p>
+
+  <div class="practice">
+    <div class="hd">Prática</div>
+    <h4>Inventário de Resistência</h4>
+    <ol>
+      <li>No alto de uma página, escreva um desejo concreto e sincero. Seja específico: não "ser feliz", mas "ter uma renda de X" ou "viver um relacionamento leve e verdadeiro".</li>
+      <li>Abaixo, faça duas colunas. À esquerda, liste todas as <em>crenças</em> que você carrega sobre esse tema ("isso é difícil", "não é para mim", "vai dar errado").</li>
+      <li>À direita, liste os <em>medos</em> e o <em>apego à falta</em>: o que você teme que aconteça, e de que forma você costuma remoer a ausência desse desejo.</li>
+      <li>Leia a lista em voz alta. Não tente consertar nada ainda. Apenas reconheça: "Isto é a minha resistência." A consciência é o primeiro solvente.</li>
+    </ol>
+    <p class="tip">Guarde esta folha. Ela será o seu material de trabalho ao longo de todo o livro.</p>
+  </div>
+
+  <div class="keys">
+    <div class="hd">Pontos-chave</div>
+    <ul>
+      <li>A fórmula: <strong>Desejo + Não Resistência = Resultado Desejado.</strong></li>
+      <li>A realidade é generosa; desejos legítimos apontam para o que já é possível.</li>
+      <li>Resistência = crenças limitantes, medo, apego à falta e esforço tenso.</li>
+      <li>O desejo já costuma estar alto; a alavanca é <strong>reduzir a resistência</strong>, não aumentar o desejo.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ CAPÍTULO 2 ============================ -->
+<section class="chapter">
+  <div class="chap-head">
+    <div class="chap-num">02</div>
+    <div class="kicker">Parte I &middot; O mecanismo do magnetismo</div>
+    <h2 class="chap-title">Estados Primais e Estados Poderosos</h2>
+    <p class="epigraph">Você não cria a partir do que diz querer. Você cria a partir do estado em que se encontra.</p>
+    <a class="timestamp" href="https://www.youtube.com/watch?v=MgDSRCK-hrk&t=1348">No episódio &middot; 22:28</a>
+    <div class="chap-rule"></div>
+  </div>
+
+  <p class="first"><span class="dropcap">S</span>e a resistência é o obstáculo, onde exatamente ela vive? A resposta de Bayer é precisa: no seu sistema nervoso. E ele o descreve operando, essencialmente, em dois estados. Aprender a reconhecer em qual deles você está — e a transitar conscientemente entre eles — é, talvez, a habilidade mais prática deste livro inteiro.</p>
+
+  <h3 class="sub"><span class="n">&#8226;</span>O Estado Primal</h3>
+  <p>O primeiro é o <strong>Estado Primal</strong>: o antigo modo de luta ou fuga, herdado dos nossos ancestrais para escapar de predadores. Nele reinam o estresse, a ansiedade e o medo. O corpo se enche de cortisol, a respiração encurta, os músculos tensionam. A mente entra em visão de túnel: enxerga ameaças por toda parte, pensa em preto e branco, catastrofiza, sente urgência. É um estado brilhante para sobreviver a um leão — e péssimo para construir uma vida.</p>
+  <p>Por quê? Porque a partir do estado primal quase todas as decisões são reativas e defensivas. Você reage em vez de responder. Fecha-se em vez de se abrir. E, sobretudo, emite a frequência da falta e do medo — repelindo justamente aquilo que gostaria de atrair.</p>
+
+  <h3 class="sub"><span class="n">&#8226;</span>O Estado Poderoso</h3>
+  <p>O segundo é o <strong>Estado Poderoso</strong>: o modo em que o sistema nervoso se sente seguro. Nele surgem a calma, a alegria, a paz e — detalhe crucial — a <strong>intuição</strong>. Com o corpo relaxado, o cérebro reabre o acesso à criatividade, à visão ampla, à capacidade de ver soluções e oportunidades que, no estado primal, eram literalmente invisíveis. É deste estado que nasce o magnetismo. Aqui você não persegue: você irradia.</p>
+
+  <div class="callout">
+    <div class="lbl">A chave da criação</div>
+    <p>É impossível manifestar aquilo que você deseja a partir do estado primal. Toda criação poderosa &mdash; nos negócios, no amor, na saúde &mdash; acontece a partir do estado poderoso. Por isso, gerir o próprio estado deixa de ser "autoajuda" e passa a ser a competência central de quem quer resultados.</p>
+  </div>
+
+  <h3 class="sub"><span class="n">&#8226;</span>Como saber em que estado você está</h3>
+  <p>O primeiro passo é a percepção. O estado primal deixa pistas em três níveis:</p>
+  <p><strong>No corpo:</strong> peito apertado, respiração curta e alta, mandíbula ou ombros tensos, estômago embrulhado, inquietação.</p>
+  <p><strong>Nas emoções:</strong> irritação, preocupação, pressa, defensividade, aquela sensação de que "algo está errado".</p>
+  <p><strong>Nos pensamentos:</strong> espirais de "e se...", catastrofização, julgamento, tudo-ou-nada, a mente correndo sem parar.</p>
+  <p>Nada disso é defeito de caráter. É apenas o seu sistema de alarme disparando. O problema não é entrar no estado primal — todos entramos, muitas vezes ao dia. O problema é <em>ficar</em> lá sem perceber, tomando decisões importantes a partir do alarme.</p>
+
+  <h3 class="sub"><span class="n">&#8226;</span>Ferramentas para voltar ao estado poderoso</h3>
+  <p>Reconhecido o estado primal, o próximo passo é a transição. Algumas ferramentas simples e comprovadas:</p>
+  <p><strong>A respiração.</strong> Exalações longas e lentas — mais longas que as inalações — sinalizam segurança ao sistema nervoso. Duas ou três respirações conscientes já começam a virar a chave.</p>
+  <p><strong>O corpo.</strong> Mudar a postura, alongar, caminhar, sacudir a tensão. O estado segue o corpo tanto quanto o corpo segue o estado.</p>
+  <p><strong>A gratidão.</strong> É neuroquimicamente impossível sentir medo profundo e gratidão genuína ao mesmo tempo. Trazer à mente, com sinceridade, três coisas boas reais desloca o estado interno.</p>
+  <p><strong>A presença.</strong> Voltar ao aqui e agora — aos sons, à respiração, ao contato dos pés com o chão. O medo vive quase sempre no futuro imaginado; a presença o desarma.</p>
+
+  <div class="pull">
+    <span class="mk">&ldquo;</span>
+    <p>Resiliência não é nunca cair no medo. É a velocidade com que você retorna à paz.</p>
+    <span class="who">O treino do estado</span>
+  </div>
+
+  <p>O objetivo não é a perfeição de nunca se estressar — isso seria negar a própria biologia. O objetivo é a <strong>maestria da recuperação</strong>: perceber o estado primal cada vez mais cedo e voltar ao estado poderoso cada vez mais rápido. Com a prática, o intervalo entre o gatilho e o retorno encurta de dias para horas, de horas para minutos. É aí que a vida muda.</p>
+
+  <div class="practice">
+    <div class="hd">Prática</div>
+    <h4>O Termômetro do Estado</h4>
+    <ol>
+      <li>Escolha três âncoras no dia (ex.: ao acordar, após o almoço, antes de dormir) para uma checagem de 30 segundos.</li>
+      <li>Pergunte-se: "Neste momento, estou mais no primal ou no poderoso?" Confira os sinais no corpo, nas emoções e nos pensamentos.</li>
+      <li>Se estiver no primal, aplique <em>uma</em> ferramenta: três exalações longas, uma caminhada curta ou três gratidões sinceras.</li>
+      <li>Ao fim do dia, anote em uma linha: qual foi o principal gatilho de hoje e quanto tempo você levou para voltar. Observe esse tempo diminuir ao longo das semanas.</li>
+    </ol>
+    <p class="tip">Decisões importantes, sempre que possível, só a partir do estado poderoso. No primal, adie.</p>
+  </div>
+
+  <div class="keys">
+    <div class="hd">Pontos-chave</div>
+    <ul>
+      <li>O sistema nervoso opera em dois estados: <strong>primal</strong> (medo, luta ou fuga) e <strong>poderoso</strong> (paz, intuição).</li>
+      <li>Não se cria abundância a partir do primal; o magnetismo nasce do estado poderoso.</li>
+      <li>Reconheça o primal pelos sinais no corpo, nas emoções e nos pensamentos.</li>
+      <li>Volte ao poderoso com respiração, corpo, gratidão e presença. Meça sua velocidade de recuperação.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ CAPÍTULO 3 ============================ -->
+<section class="chapter">
+  <div class="chap-head">
+    <div class="chap-num">03</div>
+    <div class="kicker">Parte II &middot; As raízes da resistência</div>
+    <h2 class="chap-title">A Ferida Central da Infância</h2>
+    <p class="epigraph">Grande parte da sua vida adulta é a resposta de uma criança a uma pergunta que ninguém percebeu que ela fez.</p>
+    <a class="timestamp" href="https://www.youtube.com/watch?v=MgDSRCK-hrk&t=348">No episódio &middot; 05:48</a>
+    <div class="chap-rule"></div>
+  </div>
+
+  <p class="first"><span class="dropcap">P</span>or que reagimos ao dinheiro, ao amor e ao sucesso da forma como reagimos? Por que uns "agarram" e outros "fogem"? Bayer aponta para uma origem comum: a maioria das pessoas opera, na vida adulta, a partir de <strong>programas subconscientes</strong> instalados na infância. Estima-se que a mente subconsciente governe a imensa maioria das nossas reações diárias. E esses programas foram, quase todos, escritos quando éramos muito pequenos.</p>
+
+  <h3 class="sub"><span class="n">&#8226;</span>Duas frases que moldam vidas</h3>
+  <p>Segundo Bayer, no fundo de quase todo mundo existe uma ferida central que se cristaliza em uma frase silenciosa. As duas mais comuns são:</p>
+  <p><strong>"Eu não estou seguro."</strong> A sensação de que o mundo é perigoso e imprevisível, de que é preciso vigiar, controlar, acumular para não ser pego desprevenido.</p>
+  <p><strong>"Eu não sou bom o bastante."</strong> A convicção íntima de que há algo de errado ou insuficiente em si — de que o amor e o valor precisam ser conquistados, provados, merecidos.</p>
+  <p>Há variações — "eu não sou amável", "eu não pertenço", "eu sou demais" ou "eu sou de menos" —, mas o mecanismo é o mesmo. Essas frases não são verdades. São <em>interpretações</em>.</p>
+
+  <div class="callout">
+    <div class="lbl">De onde vem a ferida</div>
+    <p>A ferida raramente exige um grande trauma. A mente de uma criança é uma máquina de dar sentido, e ela se coloca no centro de tudo. Um pai ausente por excesso de trabalho, uma bronca em público, um irmão que recebeu mais atenção num dia difícil &mdash; e a criança conclui: "deve ser porque há algo de errado comigo". A conclusão é frágil, mas se instala como se fosse lei.</p>
+  </div>
+
+  <h3 class="sub"><span class="n">&#8226;</span>Como a ferida governa o adulto</h3>
+  <p>O que se formou como estratégia de sobrevivência infantil vira, décadas depois, o roteiro invisível da vida adulta. Repare nos padrões:</p>
+  <p>Quem carrega o <strong>"não sou bom o bastante"</strong> tende a viver de conquista em conquista sem jamais se sentir satisfeito; a agradar todo mundo; a se sabotar justamente quando o sucesso se aproxima; a temer a visibilidade. Nenhum resultado nunca é suficiente, porque o problema nunca esteve no resultado — esteve na frase.</p>
+  <p>Quem carrega o <strong>"não estou seguro"</strong> tende a controlar tudo e todos; a viver em ansiedade e escassez; a ter dificuldade de relaxar, confiar e <em>receber</em>. Acumula sem descanso e mesmo assim não se sente em paz, porque a insegurança não vinha de fora.</p>
+  <p>Perceba como isso conecta os capítulos anteriores: a ferida é a fonte da <strong>resistência</strong> do Capítulo 1 e o gatilho que dispara o <strong>estado primal</strong> do Capítulo 2. Ela é a raiz da qual brotam os sintomas.</p>
+
+  <div class="pull">
+    <span class="mk">&ldquo;</span>
+    <p>Você não está quebrado. Você está executando, com fidelidade, um programa que já cumpriu seu papel.</p>
+    <span class="who">A virada da compaixão</span>
+  </div>
+
+  <h3 class="sub"><span class="n">&#8226;</span>O objetivo não é culpar</h3>
+  <p>Trazer a ferida à luz não tem nada a ver com culpar os pais. Eles também operavam a partir das próprias feridas, herdadas dos pais deles. O objetivo é diferente e muito mais poderoso: tornar <em>consciente</em> o programa que rodava no escuro. Porque só é possível reescrever aquilo que se consegue enxergar. E o primeiro gesto dessa reescrita é a compaixão — pela criança que, com os recursos que tinha, fez a melhor interpretação possível de um mundo que ainda não entendia.</p>
+
+  <div class="practice">
+    <div class="hd">Prática</div>
+    <h4>Encontrando a ferida</h4>
+    <ol>
+      <li>Lembre-se de uma reação adulta que se repete e que você não gosta (explodir, travar, agradar demais, fugir, controlar).</li>
+      <li>Pergunte: "O que eu temo que aconteça se eu <em>não</em> reagir assim?" Escreva a resposta sem filtrar.</li>
+      <li>Continue perguntando "e o que isso significaria sobre mim?" até chegar a uma frase nua: "eu não sou...", "eu não estou...". Essa é, provavelmente, a sua ferida central.</li>
+      <li>Feche os olhos e imagine a criança que fez essa interpretação pela primeira vez. Diga a ela, em silêncio, o que ela precisava ter ouvido: "você está seguro", "você já é suficiente".</li>
+    </ol>
+    <p class="tip">Se emergirem emoções intensas, vá devagar e, se necessário, faça este trabalho com o apoio de um terapeuta.</p>
+  </div>
+
+  <div class="keys">
+    <div class="hd">Pontos-chave</div>
+    <ul>
+      <li>A maior parte das reações adultas vem de <strong>programas subconscientes</strong> da infância.</li>
+      <li>A ferida central costuma se resumir a "não estou seguro" ou "não sou bom o bastante".</li>
+      <li>São <em>interpretações</em> de uma criança, não verdades — e são a raiz da resistência e do estado primal.</li>
+      <li>O caminho não é culpa: é consciência e compaixão, para poder reescrever.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ CAPÍTULO 4 ============================ -->
+<section class="chapter">
+  <div class="chap-head">
+    <div class="chap-num">04</div>
+    <div class="kicker">Parte II &middot; As raízes da resistência</div>
+    <h2 class="chap-title">Vícios, Sofrimento e a Arte da Entrega</h2>
+    <p class="epigraph">Todo vício é uma tentativa desesperada de não sentir uma dor que pede, apenas, para ser sentida.</p>
+    <a class="timestamp" href="https://www.youtube.com/watch?v=MgDSRCK-hrk&t=3051">No episódio &middot; 50:51</a>
+    <div class="chap-rule"></div>
+  </div>
+
+  <p class="first"><span class="dropcap">E</span>ste é o capítulo mais pessoal da história de David Bayer. Com rara honestidade, ele compartilha décadas de luta contra o vício em drogas, álcool e sexo. Não como um troféu de superação, mas como um mapa — porque foi descendo ao fundo desse poço que ele encontrou a verdade que reorganiza tudo o que vimos até aqui.</p>
+
+  <h3 class="sub"><span class="n">&#8226;</span>A raiz de todo vício</h3>
+  <p>A tese é direta e libertadora: <strong>a raiz de qualquer vício é o sofrimento emocional não resolvido.</strong> A substância, o comportamento compulsivo, a fuga — nada disso é a doença. São o <em>sintoma</em>, a tentativa de medicar uma dor que, quase sempre, nasce da ferida do capítulo anterior. O vício é o curativo que uma pessoa encontrou para não sentir "eu não estou seguro" ou "eu não sou suficiente".</p>
+  <p>Essa compreensão muda a relação com o problema. Enquanto tratamos o vício como falha moral, alimentamos a <strong>vergonha</strong> — e a vergonha aprofunda o estado primal, que por sua vez aumenta a necessidade de fugir. É um círculo que se retroalimenta. A saída não começa por mais julgamento; começa por olhar, com coragem e compaixão, para a dor que está embaixo.</p>
+
+  <div class="callout gold">
+    <div class="lbl">Amplie a definição</div>
+    <p>Não é preciso ter vivido a dependência química para reconhecer o mecanismo. Todos nós somos, de algum modo, "viciados" em algo que nos ajuda a não sentir: o controle, a aprovação dos outros, a distração infinita da tela, o trabalho sem pausa, a preocupação constante. A pergunta útil não é "eu tenho um vício?", mas "o que eu faço para não sentir?".</p>
+  </div>
+
+  <h3 class="sub"><span class="n">&#8226;</span>O ponto de virada: a entrega</h3>
+  <p>Para Bayer, a virada veio com uma palavra que o ego detesta: <strong>entrega</strong>. Foi no programa de 12 passos que ele encontrou o gesto decisivo — transferir o peso do controle para um "poder superior". Parar de carregar sozinho, nos próprios ombros, a ilusão de que precisava controlar tudo para se manter seguro.</p>
+  <p>É fundamental entender o que entrega <em>não</em> é. Entregar não é desistir, não é passividade, não é preguiça. É soltar o aperto mortal do controle. E aqui os fios se juntam: o controle é uma estratégia primal, nascida do "eu não estou seguro". A entrega é a forma mais profunda da <strong>não resistência</strong> do Capítulo 1. Render-se é o oposto de agarrar. É confiar que a realidade generosa pode sustentar você quando as suas mãos, enfim, se abrem.</p>
+
+  <div class="pull">
+    <span class="mk">&ldquo;</span>
+    <p>A entrega não é fraqueza. É a força de quem para de lutar contra a vida para, enfim, começar a viver.</p>
+    <span class="who">O aprendizado do fundo do poço</span>
+  </div>
+
+  <p>Foi pela entrega — somada à conexão com outras pessoas e à coragem de encarar a dor em vez de fugir dela — que Bayer relata ter alcançado o amor incondicional por si mesmo e uma sobriedade verdadeira, não apenas a ausência da substância, mas a cura da causa. O que curou não foi controlar melhor. Foi soltar.</p>
+
+  <div class="practice">
+    <div class="hd">Prática</div>
+    <h4>O que você está tentando não sentir?</h4>
+    <ol>
+      <li>Identifique um comportamento ao qual você recorre no automático quando está desconfortável (rolar o feed, comer sem fome, trabalhar demais, controlar alguém).</li>
+      <li>Na próxima vez que o impulso surgir, faça uma pausa de 90 segundos antes de agir. Apenas respire e pergunte: "que sensação eu não quero sentir agora?"</li>
+      <li>Localize essa sensação no corpo e permita que ela exista, sem consertá-la. Diga internamente: "eu deixo isto estar aqui." Muitas emoções, apenas sentidas, começam a se dissolver.</li>
+      <li>Pratique uma pequena entrega verbal: "eu solto o controle disto. Eu confio." Note o que muda no corpo depois.</li>
+    </ol>
+    <p class="tip">Importante: vício é uma questão séria de saúde. Se você luta contra uma dependência, busque ajuda profissional e grupos de apoio. Este exercício complementa, mas não substitui, esse cuidado.</p>
+  </div>
+
+  <div class="keys">
+    <div class="hd">Pontos-chave</div>
+    <ul>
+      <li>A raiz de todo vício é o <strong>sofrimento emocional não resolvido</strong> — o sintoma, não a doença.</li>
+      <li>A vergonha aprofunda o ciclo; a compaixão o interrompe.</li>
+      <li>Todos medicamos a dor de algum modo: controle, aprovação, distração, trabalho.</li>
+      <li>A <strong>entrega</strong> — soltar o controle — é a forma mais profunda de não resistência.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ CAPÍTULO 5 ============================ -->
+<section class="chapter">
+  <div class="chap-head">
+    <div class="chap-num">05</div>
+    <div class="kicker">Parte III &middot; A reprogramação</div>
+    <h2 class="chap-title">Crenças São Decisões</h2>
+    <p class="epigraph">Uma crença não é uma verdade sobre o mundo. É uma decisão que você tomou sobre ele — e toda decisão pode ser revista.</p>
+    <a class="timestamp" href="https://www.youtube.com/watch?v=MgDSRCK-hrk&t=4194">No episódio &middot; 1:09:54</a>
+    <div class="chap-rule"></div>
+  </div>
+
+  <p class="first"><span class="dropcap">A</span>qui chegamos à ideia mais libertadora de toda a entrevista — aquela que transforma tudo o que veio antes de diagnóstico em cura. Nós tratamos nossas crenças como sentenças definitivas: "eu <em>sou</em> ansioso", "eu <em>não sirvo</em> para dinheiro", "as pessoas <em>não são</em> confiáveis". Bayer propõe uma reformulação que parece pequena e é sísmica: crenças não são fatos. São <strong>decisões</strong> — decisões inconscientes que tomamos quando crianças para dar conta de um mundo que não entendíamos.</p>
+
+  <h3 class="sub"><span class="n">&#8226;</span>Por que isso muda tudo</h3>
+  <p>Se uma crença fosse um fato sobre a realidade, você estaria condenado a ela. Mas se uma crença é uma <em>decisão</em> — ainda que antiga, automática e tomada por uma criança assustada —, então uma verdade extraordinária se impõe: <strong>o que foi decidido pode ser <em>re</em>decidido.</strong> Você não é mais aquela criança. Você tem hoje recursos, perspectiva e liberdade que ela não tinha. E, como adulto consciente, você pode reavaliar a decisão e escolher outra.</p>
+
+  <div class="callout">
+    <div class="lbl">A distinção que liberta</div>
+    <p>"Eu sou ansioso" é uma prisão: descreve uma essência imutável. "Quando criança, eu decidi que o mundo era perigoso e que eu precisava me manter em alerta" é uma porta: descreve uma escolha — e escolhas se refazem.</p>
+  </div>
+
+  <h3 class="sub"><span class="n">&#8226;</span>A Matriz de Decisão</h3>
+  <p>Bayer chama de <strong>Matriz de Decisão</strong> o método de reescrever essas escolhas de forma consciente. Podemos traduzi-lo em seis passos práticos:</p>
+  <p><strong>1. Identifique a crença.</strong> Nomeie o pensamento limitante — em geral, um desdobramento da ferida do Capítulo 3. Ex.: "não posso confiar nas pessoas".</p>
+  <p><strong>2. Veja-a como decisão, não como fato.</strong> Reformule: "em algum momento, eu <em>decidi</em> que não podia confiar — provavelmente para me proteger de me machucar de novo".</p>
+  <p><strong>3. Examine o custo.</strong> Pergunte honestamente: como essa decisão governou a minha vida? O que ela já me custou em amor, oportunidades, paz?</p>
+  <p><strong>4. Questione.</strong> Isto é <em>absolutamente</em> verdade, sempre, sem exceção? Essa crença me serve hoje? Quem eu seria sem ela?</p>
+  <p><strong>5. Decida de novo.</strong> Escolha, de forma deliberada, uma perspectiva mais verdadeira e libertadora: "eu posso discernir em quem confiar e me abrir aos poucos". Não é ingenuidade — é uma decisão mais madura que a de uma criança ferida.</p>
+  <p><strong>6. Incorpore e reforce.</strong> Uma nova decisão só vira novo programa com repetição. Aja, fale e sinta a partir da nova escolha, de novo e de novo, até que ela se torne o padrão automático.</p>
+
+  <div class="pull">
+    <span class="mk">&ldquo;</span>
+    <p>Você não precisa da permissão de ninguém para reescrever uma decisão que você mesmo tomou.</p>
+    <span class="who">O poder de reescolher</span>
+  </div>
+
+  <h3 class="sub"><span class="n">&#8226;</span>O arco se completa</h3>
+  <p>Veja como toda a jornada se fecha aqui. Uma <strong>nova decisão</strong> consciente dissolve a antiga crença; sem a crença limitante, o gatilho perde força e você passa a habitar com mais frequência o <strong>estado poderoso</strong>; no estado poderoso, a <strong>resistência</strong> cai; e, com a resistência próxima de zero, a Equação de Ouro se completa por conta própria. Desejo mais não resistência é igual a resultado. É assim que se deixa, enfim, de perseguir — e se passa a atrair. É assim que você se torna o ímã.</p>
+
+  <div class="practice">
+    <div class="hd">Prática</div>
+    <h4>A Matriz de Decisão</h4>
+    <ol>
+      <li>Escreva uma crença limitante central (use a ferida que você encontrou no Capítulo 3).</li>
+      <li>Reescreva-a começando com "Um dia, eu decidi que...". Sinta a diferença entre um fato e uma escolha.</li>
+      <li>Liste três custos concretos que essa decisão já lhe trouxe.</li>
+      <li>Responda por escrito: é sempre verdade? Ela me serve? Quem eu seria sem ela?</li>
+      <li>Formule a nova decisão em uma frase, no presente e no positivo. Escreva-a em um cartão.</li>
+      <li>Defina uma micro-ação para hoje que só faria sentido se a nova decisão fosse verdadeira. Faça-a.</li>
+    </ol>
+    <p class="tip">Releia seu cartão pela manhã e à noite por 30 dias. A repetição é o cinzel que grava o novo programa.</p>
+  </div>
+
+  <div class="keys">
+    <div class="hd">Pontos-chave</div>
+    <ul>
+      <li>Crenças não são verdades definitivas: são <strong>decisões inconscientes</strong> da infância.</li>
+      <li>O que foi decidido pode ser redecidido — você não é mais aquela criança.</li>
+      <li>A <strong>Matriz de Decisão</strong>: identificar, ver como decisão, examinar o custo, questionar, redecidir, incorporar.</li>
+      <li>Nova decisão &rarr; estado poderoso &rarr; menos resistência &rarr; a equação se completa.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================ CAPÍTULO 6 ============================ -->
+<section class="chapter">
+  <div class="chap-head">
+    <div class="chap-num">06</div>
+    <div class="kicker">Parte III &middot; A reprogramação</div>
+    <h2 class="chap-title">Torne-se o Ímã</h2>
+    <p class="epigraph">Saber é o mapa. Praticar é a viagem. Este é o seu itinerário para os próximos 30 dias.</p>
+    <a class="timestamp" href="https://www.youtube.com/watch?v=MgDSRCK-hrk">Assista ao episódio completo</a>
+    <div class="chap-rule"></div>
+  </div>
+
+  <p class="first"><span class="dropcap">T</span>oda a jornada deste livro cabe em uma única frase: você se torna um ímã não adicionando desejo, mas <strong>removendo resistência</strong> — e a resistência se remove cuidando do estado, iluminando a ferida, praticando a entrega e reescrevendo as decisões antigas. Saber disso, porém, não basta. A transformação é um músculo, e músculo se constrói com repetição. Aqui está um plano de quatro semanas para levar a teoria ao corpo.</p>
+
+  <h3 class="sub"><span class="n">1</span>Semana 1 &middot; Consciência</h3>
+  <p>O tema é <em>perceber</em>. Faça diariamente o <strong>Termômetro do Estado</strong> (Capítulo 2) e revisite o <strong>Inventário de Resistência</strong> (Capítulo 1). Você ainda não vai consertar nada — apenas aprender a flagrar, em tempo real, quando entra no estado primal e como a resistência se manifesta. Ninguém muda o que não vê.</p>
+
+  <h3 class="sub"><span class="n">2</span>Semana 2 &middot; Raiz</h3>
+  <p>O tema é <em>compreender</em>. Dedique-se à prática <strong>Encontrando a Ferida</strong> (Capítulo 3). Rastreie suas reações até a frase-semente — "não estou seguro", "não sou suficiente". Ao longo da semana, quando algo o desequilibrar, pergunte: "qual ferida isto está tocando?" A compaixão pela criança que você foi é o remédio desta etapa.</p>
+
+  <h3 class="sub"><span class="n">3</span>Semana 3 &middot; Entrega</h3>
+  <p>O tema é <em>soltar</em>. Pratique <strong>O que você está tentando não sentir?</strong> (Capítulo 4). Escolha uma área em que você agarra o controle e, deliberadamente, afrouxe as mãos. Use a frase de entrega — "eu solto isto; eu confio" — como âncora do dia. Observe o paradoxo: quanto menos você força, mais as coisas fluem.</p>
+
+  <h3 class="sub"><span class="n">4</span>Semana 4 &middot; Redecisão</h3>
+  <p>O tema é <em>reescrever</em>. Rode a <strong>Matriz de Decisão</strong> (Capítulo 5) sobre a crença central que emergiu na Semana 2. Formule a nova decisão, carregue-a num cartão e aja a partir dela todos os dias. Ao fim da semana, releia seu Inventário de Resistência inicial: perceba o quanto já se dissolveu.</p>
+
+  <div class="callout gold">
+    <div class="lbl">A âncora diária</div>
+    <p>Ao acordar: três respirações longas, três gratidões e a leitura do seu cartão de nova decisão. Ao dormir: uma linha no caderno sobre o gatilho do dia e a velocidade do seu retorno à paz. Dois minutos de manhã, dois à noite. É a consistência, não a intensidade, que reprograma.</p>
+  </div>
+
+  <p>Seja gentil com o processo. Haverá dias primais, recaídas de velhos padrões, crenças que voltam a sussurrar. Isso não é fracasso — é o trajeto. Lembre-se da medida que importa: não a de nunca cair, mas a da <strong>velocidade com que você retorna</strong>. Cada retorno é mais rápido que o anterior. E, um dia, você perceberá que parou de correr atrás das coisas. Que elas passaram a chegar. Que você, sem esforço e sem drama, virou o campo — e não mais o caçador.</p>
+
+  <div class="closing" style="padding-top:8mm;break-before:auto;">
+    <div class="orn">&#10022; &nbsp; &#8226; &nbsp; &#10022;</div>
+    <p>A realidade sempre foi generosa.<br>Faltava apenas você abrir as mãos<br>para poder, enfim, receber.</p>
+    <div class="sig">Que assim seja &mdash; e comece hoje.</div>
+  </div>
+</section>
+
+<!-- ============================ KIT DE FERRAMENTAS ============================ -->
+<section class="chapter">
+  <div class="chap-head">
+    <div class="kicker" style="color:var(--gold);">Para levar com você</div>
+    <h2 class="chap-title">Kit de Ferramentas Rápidas</h2>
+    <p class="epigraph">Recorte, salve, releia. Cinco lembretes para os dias em que a mente esquecer.</p>
+    <div class="chap-rule"></div>
+  </div>
+
+  <div class="kit">
+    <div class="row">
+      <div class="ic">&#43;</div>
+      <div class="tx">
+        <h4>A Equação de Ouro</h4>
+        <p><b>Desejo + Não Resistência = Resultado.</b> Não tente querer mais; trabalhe para resistir menos. A pergunta-chave: "onde ainda estou resistindo a isto?"</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ic">&#9788;</div>
+      <div class="tx">
+        <h4>Os dois estados</h4>
+        <p><b>Primal</b> = medo, pressa, controle. <b>Poderoso</b> = paz, clareza, intuição. Só decida e crie a partir do poderoso. No primal, respire e adie.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ic">&#9734;</div>
+      <div class="tx">
+        <h4>A ferida é uma interpretação</h4>
+        <p>"Não estou seguro" e "não sou suficiente" não são verdades — são conclusões de uma criança. Olhe para elas com <b>compaixão</b>, não com culpa.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ic">&#8734;</div>
+      <div class="tx">
+        <h4>A arte da entrega</h4>
+        <p>Controlar é primal; soltar é poder. Diante do impulso de agarrar, respire e diga: <b>"eu solto isto; eu confio."</b> Entregar é a não resistência em ação.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ic">&#8635;</div>
+      <div class="tx">
+        <h4>Crenças são decisões</h4>
+        <p>O que foi decidido pode ser <b>redecidido</b>. Troque "eu sou assim" por "um dia eu decidi isto — e hoje escolho diferente".</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:8mm;">
+    <div class="lbl">As quatro perguntas que dissolvem uma crença</div>
+    <p>1. Isto é absolutamente verdade? &nbsp; 2. Esta crença me serve hoje? &nbsp; 3. O que ela já me custou? &nbsp; 4. Quem eu seria sem ela?</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <p style="text-align:center;font-family:var(--sans);font-size:8.4pt;letter-spacing:.06em;color:var(--muted);line-height:1.7;margin-top:6mm;">
+    Aprofunde-se na fonte original &mdash; a entrevista de David Bayer a Lewis Howes:<br>
+    <a href="https://www.youtube.com/watch?v=MgDSRCK-hrk" style="color:var(--violet);text-decoration:none;font-weight:600;">youtube.com/watch?v=MgDSRCK-hrk</a><br><br>
+    <span style="color:var(--gold);font-weight:700;letter-spacing:.2em;text-transform:uppercase;">Torne-se o ímã. A vida que você deseja já está a caminho.</span>
+  </p>
+</section>
+
+</body>
+</html>
